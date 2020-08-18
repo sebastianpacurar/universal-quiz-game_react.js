@@ -1,0 +1,30 @@
+{
+  "name": "universal-quiz-game_react.js",
+  "version": "0.1.0",
+  "private": false,
+  "dependencies": {
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-scripts": "3.4.3",
+    "sass": "^1.26.10"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "sass": "sass --watch input.scss output.css"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
