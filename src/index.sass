@@ -1,4 +1,106 @@
-$bgcolor: antiquewhite
+$backgroundColor: antiquewhite
+$mainColor: #8a2be2
+$gameStatusFonts: 16px, Arial, Helvetica, sans-serif
+
+$buttonActive: lightseagreen
+$buttonHover: lightsalmon
+
+$spinnerSize: 30px
 
 body
-  background-color: $bgcolor
+  background-color: $backgroundColor
+
+h1
+  text-align: center
+
+
+// game selection area (game status)
+.game-status
+  display: grid
+  justify-content: center
+
+
+//  loading spinner
+.spinner
+  position: relative
+  top: calc(50% - #{$spinnerSize} / 2)
+  left: calc(50% - #{$spinnerSize} / 2)
+  width: $spinnerSize
+  height: $spinnerSize
+  animation: spinner 0.75s linear infinite
+
+  span
+    position: absolute
+    width: 100%
+    height: 100%
+    border-radius: 50%
+
+
+  .spinner-inner-1
+    background: linear-gradient(to right, rgba($mainColor, 0) 0%, rgba($mainColor, 0) 50%, $mainColor 51%)
+
+
+  .spinner-inner-2
+    background: linear-gradient(to top, rgba($backgroundColor, 0) 0%, $backgroundColor 100%)
+
+
+  .spinner-inner-3
+    $offset: $spinnerSize * 0.1
+    top: $offset
+    left: $offset
+    width: $spinnerSize - ($offset * 2)
+    height: $spinnerSize - ($offset * 2)
+    background: $backgroundColor
+
+
+@keyframes spinner
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+
+// select tags related
+select
+  text-indent: 5px
+  display: block
+  font: $gameStatusFonts
+  font-weight: 700
+  color: $mainColor
+  line-height: 1.3
+  padding: .6em 1.4em .5em .8em
+  width: 275px
+  max-width: 100%
+  height: 45px
+  border: 1px solid $mainColor
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04)
+  border-radius: .5em
+  outline: none
+
+  option
+    color: $mainColor
+    outline: none
+
+
+//start game button
+#start-btn
+  justify-self: center
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  font: $gameStatusFonts
+  background-color: yellowgreen
+  border: none
+  border-radius: .5em
+  text-align: center
+  text-decoration: none
+  cursor: pointer
+  width: 100%
+  height: 45px
+  outline: none
+  margin-top: 25px
+
+  &:active
+    background-color: $buttonActive
+
+  &:hover
+    background-color: $buttonHover
+ 
