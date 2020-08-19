@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "sass": "sass --watch input.scss output.css"
+    "sass": "sass --watch ./src:./public/stylesheet"
   },
   "eslintConfig": {
     "extends": "react-app"

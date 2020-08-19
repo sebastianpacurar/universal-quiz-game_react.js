@@ -1,11 +1,58 @@
+// general variables
 $backgroundColor: antiquewhite
 $mainColor: #8a2be2
-$gameStatusFonts: 16px, Arial, Helvetica, sans-serif
+$gameStatusFonts: 16px Arial, Helvetica, sans-serif
 
+// button variables
 $buttonActive: lightseagreen
 $buttonHover: lightsalmon
+$buttonDisabled: gray
 
-$spinnerSize: 30px
+// spinner variables
+$spinnerSize: 50px
+
+// media queries variables
+$verySmall-display: "screen and (min-width: 0px) and (max-width: 290px)"
+
+
+// the grid to be shared among the game-select and quiz-section classes
+%organisedGrid
+  display: grid
+  grid-template-columns: 1fr
+  justify-items: center
+  grid-row-gap: 10px
+  user-select: none
+
+
+// the styling for the question and answers
+%QuestionAndAnswers
+  padding: 10px
+  background-color: white
+  text-align: center
+  border: 1px solid $mainColor
+  border-radius: .5em
+  width: 90%
+  user-select: none
+
+
+// the default styling for buttons
+%btnStyle
+  justify-self: center
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+  font: $gameStatusFonts
+  font-weight: bold
+  color: $mainColor
+  background-color: yellowgreen
+  border: none
+  border-radius: .5em
+  text-align: center
+  text-decoration: none
+  cursor: pointer
+  width: 275px
+  height: 45px
+  outline: none
+  margin-top: 25px
+  user-select: none
 
 body
   background-color: $backgroundColor
@@ -15,14 +62,55 @@ h1
 
 
 // game selection area (game status)
-.game-status
+#game-select
   display: grid
-  justify-content: center
+  grid-template-columns: 1fr
+  justify-items: center
+  grid-row-gap: 10px
+
+  // select related
+  select
+    text-indent: 5px
+    display: block
+    font: $gameStatusFonts
+    font-weight: 700
+    color: $mainColor
+    line-height: 1.3
+    padding: .6em 1.4em .5em .8em
+    width: 275px
+    max-width: 100%
+    height: 45px
+    border: 1px solid $mainColor
+    box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04)
+    border-radius: .5em
+    outline: none
+
+    option
+      color: $mainColor
+      outline: none
 
 
-//  loading spinner
+//start game and next question buttons
+.btn
+  @extend %btnStyle
+
+  &:hover
+    background-color: $buttonHover
+
+  &:active
+    background-color: $buttonActive
+
+  &:disabled
+    background-color: $buttonDisabled
+    color: black
+
+    &:active
+      background-color: $buttonDisabled
+
+
+//  loading related
 .spinner
-  position: relative
+  position: absolute
   top: calc(50% - #{$spinnerSize} / 2)
   left: calc(50% - #{$spinnerSize} / 2)
   width: $spinnerSize
@@ -60,47 +148,20 @@ h1
     transform: rotate(360deg)
 
 
-// select tags related
-select
-  text-indent: 5px
-  display: block
-  font: $gameStatusFonts
-  font-weight: 700
-  color: $mainColor
-  line-height: 1.3
-  padding: .6em 1.4em .5em .8em
-  width: 275px
-  max-width: 100%
-  height: 45px
-  border: 1px solid $mainColor
-  box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04)
-  border-radius: .5em
-  outline: none
+// quiz section related
+#quiz-section
+  @extend %organisedGrid
 
-  option
-    color: $mainColor
-    outline: none
+  #question
+    @extend %QuestionAndAnswers
 
+  #answers-container
+    @extend %organisedGrid
+    grid-row-gap: 25px
+    margin-top: 20px
+    width: 100%
+    cursor: pointer
 
-//start game button
-#start-btn
-  justify-self: center
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
-  font: $gameStatusFonts
-  background-color: yellowgreen
-  border: none
-  border-radius: .5em
-  text-align: center
-  text-decoration: none
-  cursor: pointer
-  width: 100%
-  height: 45px
-  outline: none
-  margin-top: 25px
-
-  &:active
-    background-color: $buttonActive
-
-  &:hover
-    background-color: $buttonHover
- 
+  .possible-answers
+    @extend %QuestionAndAnswers
+    border: none
