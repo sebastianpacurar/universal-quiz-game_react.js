@@ -13,7 +13,9 @@
 
 /.idea
 
+# sass related
 /src/.sass-cache
+/public/stylesheet
 
 # misc
 .DS_Store
