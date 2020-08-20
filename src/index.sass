@@ -1,3 +1,6 @@
+// google fonts (mainly for title)
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap')
+
 // general variables
 $backgroundColor: antiquewhite
 $mainColor: #8a2be2
@@ -12,10 +15,27 @@ $buttonDisabled: gray
 $spinnerSize: 50px
 
 // media queries variables
-$verySmall-display: "screen and (min-width: 0px) and (max-width: 290px)"
+$extraSmallAndSmall: "screen and (min-width: 0px) and (max-width: 600px)"
 
 
-// the grid to be shared among the game-select and quiz-section classes
+// selector for inputs
+%dataHandler
+  text-indent: 20px
+  display: block
+  font: $gameStatusFonts
+  font-weight: 700
+  color: $mainColor
+  line-height: 1.3
+  padding: 0
+  width: 275px
+  max-width: 100%
+  height: 43px
+  border: 1px solid $mainColor
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04)
+  border-radius: .5em
+  outline: none
+
+// selector for the grid to be shared among the game-select and quiz-section classes
 %organisedGrid
   display: grid
   grid-template-columns: 1fr
@@ -24,7 +44,7 @@ $verySmall-display: "screen and (min-width: 0px) and (max-width: 290px)"
   user-select: none
 
 
-// the styling for the question and answers
+// selector for for the question and answers styling
 %QuestionAndAnswers
   padding: 10px
   background-color: white
@@ -32,13 +52,12 @@ $verySmall-display: "screen and (min-width: 0px) and (max-width: 290px)"
   border: 1px solid $mainColor
   border-radius: .5em
   width: 90%
-  user-select: none
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
 
 
-// the default styling for buttons
+// selector for the default styling for buttons
 %btnStyle
   justify-self: center
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
   font: $gameStatusFonts
   font-weight: bold
   color: $mainColor
@@ -53,12 +72,17 @@ $verySmall-display: "screen and (min-width: 0px) and (max-width: 290px)"
   outline: none
   margin-top: 25px
   user-select: none
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
 
 body
-  background-color: $backgroundColor
+  background: url("https://i.ibb.co/cD1c7BV/relaxing.jpg") no-repeat center fixed
+  background-size: cover
+
 
 h1
+  font-size: 2.2em
   text-align: center
+  font-family: 'Parisienne', cursive, sans-serif
 
 
 // game selection area (game status)
@@ -68,22 +92,18 @@ h1
   justify-items: center
   grid-row-gap: 10px
 
+  // input related
+  input[type="number"]
+    @extend %dataHandler
+    line-height: 0
+
   // select related
   select
+    @extend %dataHandler
     text-indent: 5px
-    display: block
-    font: $gameStatusFonts
-    font-weight: 700
-    color: $mainColor
-    line-height: 1.3
     padding: .6em 1.4em .5em .8em
     width: 275px
-    max-width: 100%
     height: 45px
-    border: 1px solid $mainColor
-    box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04)
-    border-radius: .5em
-    outline: none
 
     option
       color: $mainColor
@@ -154,14 +174,23 @@ h1
 
   #question
     @extend %QuestionAndAnswers
+    font-size: 20px
+    font-weight: bold
 
   #answers-container
     @extend %organisedGrid
     grid-row-gap: 25px
     margin-top: 20px
     width: 100%
-    cursor: pointer
 
   .possible-answers
     @extend %QuestionAndAnswers
     border: none
+    cursor: pointer
+    font-size: 20px
+
+
+// applicable for xs and sm screens
+@media #{$extraSmallAndSmall}
+  #quiz-section
+    grid-row-gap: 0

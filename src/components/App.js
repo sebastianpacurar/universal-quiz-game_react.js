@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 // utils related
 import {CHALLENGE_CATEGORY, TYPE, DIFFICULTY} from '../utils/selectOptions';
@@ -7,7 +7,6 @@ import {CHALLENGE_CATEGORY, TYPE, DIFFICULTY} from '../utils/selectOptions';
 import {fetchQuestions} from '../API';
 
 const App = () => {
-
     const [gameSelect, setGameSelect] = useState({
         category: "",
         difficulty: "",
@@ -18,7 +17,8 @@ const App = () => {
     const [questions, setQuestions] = useState([]);
     const [questionNo, setQuestionNo] = useState(0);
     const [gameStarted, setGameStarted] = useState(false);
-    const [userAnswers, setUserAnswers] = useState(0);
+    const [score, setScore] = useState(0);
+    const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
 
 
     const handleStatus = (e) => {
@@ -44,39 +44,57 @@ const App = () => {
         setLoading(false);
     }
 
-    // TODO: need to fix this
     const nextQuestion = () => {
         setQuestionNo(questionNo + 1);
-
-        if (questionNo === userAnswers) {
-            setGameStarted(false);
-        }
+        setNextBtnDisabled(!nextBtnDisabled);
     }
+
+    // when questionsNumber reaches the questionAmount the user selected, end the game
+    useEffect(() => {
+        if (questionNo === parseInt(gameSelect.questionsAmount)) {
+            setGameStarted(false);
+            setQuestionNo(0);
+            setScore(0);
+        }
+    }, [questionNo])
 
     /*
         I used event bubbling here to be able to mark the right answer green and the user selected answer
-          red. In case the user selects the right answer, then only the right answer will be marked
+          red. In case the user selects the right answer, then only the right answer will be marked;
+          Also increment score by one
+
+        The reason for using the data-unparsed custom attribute in the option tag,
+         is because the text symbols are encoded and will return false positive answers sometimes
     */
     const checkAnswer = (e) => {
-        const value = e.target.textContent
+        const value = e.target.attributes.getNamedItem('data-unparsed').value;
         const answers = e.target.parentNode.children;
+
+        // in case the answer has been already selected, do nothing
+        for (let event of answers) {
+            if (event.style.backgroundColor === 'red' || event.style.backgroundColor === 'green') {
+                return;
+            }
+        }
 
         e.target.style.border = '1px solid #8a2be2';
 
         if (value === questions[questionNo].correct_answer) {
             e.target.style.backgroundColor = 'green';
             e.target.style.color = 'white';
+            setScore(score + 1);
         } else {
             e.target.style.backgroundColor = 'red';
             e.target.style.color = 'white';
 
             for (let event of answers) {
-                if (event.textContent === questions[questionNo].correct_answer) {
+                if (event.attributes.getNamedItem('data-unparsed').value === questions[questionNo].correct_answer) {
                     event.style.backgroundColor = 'green';
                     event.style.color = 'white';
                 }
             }
         }
+        setNextBtnDisabled(!nextBtnDisabled);
     }
 
     return (
@@ -96,20 +114,12 @@ const App = () => {
             )}
 
             {/* if gameStarted state is false or all questions have been answered show game status*/}
-            {!gameStarted || userAnswers.length === parseInt(gameSelect.questionsAmount) ? (
+            {!gameStarted || questionNo === parseInt(gameSelect.questionsAmount) ? (
 
                 <section id='game-select'>
 
-                    <select id='questionsAmount-select' onChange={handleStatus}>
-                        <option disabled selected>Choose no of questions</option>
-                        {Array.from(Array(46), (x, index) => index + 5).map((number) => (
-                            <option
-                                label={number}
-                                value={number}
-                                key={`number - ${number}`}
-                            />
-                        ))}
-                    </select>
+                    <input id='questionsAmount-input' type='number' max={50} placeholder='Number of questions (max=50)'
+                           onChange={handleStatus}/>
 
                     <select id='category-select' onChange={handleStatus}>
                         {CHALLENGE_CATEGORY.map((category, index) => (
@@ -145,23 +155,23 @@ const App = () => {
                     <button
                         className='btn'
                         onClick={startGame}
-                        disabled={!Boolean(gameSelect.questionsAmount)}
+                        disabled={Number(gameSelect.questionsAmount) < 1}
                     >
                         Start Game
                     </button>
 
                 </section>
 
-                /* if gameStarted state is true and or all questions have not been answered, then if loading is false
-                     display quiz section
-                 */
-            ) : !loading ? (
+                // if loading is false and score is reset display quiz section
+            ) : !loading && score.length !== parseInt(gameSelect.questionsAmount) ? (
 
                 <QuestionSection
                     questions={questions}
                     questionNo={questionNo}
-                    nextQuestion={nextQuestion}
-                    checkAnswer={checkAnswer}
+                    handleNextQuestion={nextQuestion}
+                    handleCheckAnswer={checkAnswer}
+                    isBtnDisabled={nextBtnDisabled}
+                    score={score}
                 />
             ) : null
             }
@@ -172,14 +182,15 @@ const App = () => {
 
 const QuestionSection = props => {
 
-    const {questions, questionNo, nextQuestion, checkAnswer} = props;
+    const {questions, questionNo, handleNextQuestion, handleCheckAnswer, isBtnDisabled, score} = props;
     const currentQuestion = questions[questionNo];
-    const possibleAnswers = [...currentQuestion.incorrect_answers, currentQuestion.correct_answer]
+    const possibleAnswers = [...currentQuestion.incorrect_answers, currentQuestion.correct_answer];
 
     return (
         <article id='quiz-section'>
 
-            <p>Question {questionNo + 1} out of {questions.length}</p>
+            <h3>Question {questionNo + 1} out of {questions.length}</h3>
+            <h3>Score: {score}</h3>
 
             {/* using dangerouslySetInnerHTML to be able to parse the symbols. it's like using innerHTML in vanilla JS
                   NEVER USE THIS TYPE OF ATTRIBUTE IN REACT, because it is an opening to an XSS (cross-site scripting) attack,
@@ -192,15 +203,16 @@ const QuestionSection = props => {
                     <section
                         className='possible-answers'
                         key={`${answer}-${index}`}
-                        onClick={checkAnswer}
+                        onClick={handleCheckAnswer}
+                        data-unparsed={answer}
                         dangerouslySetInnerHTML={{__html: answer}}/>
                 ))}
             </article>
 
             <button
                 className='btn'
-                onClick={nextQuestion}
-                disabled={false}
+                onClick={handleNextQuestion}
+                disabled={isBtnDisabled}
             >
                 {questionNo + 1 === questions.length ? 'Check Result' : 'Next Question'}
             </button>
