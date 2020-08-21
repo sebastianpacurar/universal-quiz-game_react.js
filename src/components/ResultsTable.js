@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const ResultsTable = props => {
     const {questions} = props;
 
