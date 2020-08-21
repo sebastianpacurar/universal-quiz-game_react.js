@@ -33,10 +33,3 @@ export const DIFFICULTY = [
     {value: 'medium', label: 'Medium'},
     {value: 'hard', label: 'Hard'},
 ]
-
-
-export const TYPE = [
-    {value: null, label: 'Both Types'},
-    {value: 'multiple', label: 'Multiple Choice'},
-    {value: 'boolean', label: 'True / False'},
-]
