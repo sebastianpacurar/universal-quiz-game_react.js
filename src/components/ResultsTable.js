@@ -21,6 +21,6 @@ const ResultsTable = props => {
             </tbody>
         </table>
     );
-}
+};
 
 export default ResultsTable;

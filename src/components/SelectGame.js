@@ -53,7 +53,7 @@ const SelectGame = props => {
                 )}
             </section>
         </article>
-    )
-}
+    );
+};
 
 export default SelectGame;

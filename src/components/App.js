@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 
 // fetch method
 import {fetchQuestions} from '../API';
@@ -104,7 +104,7 @@ const App = () => {
     }
 
     return (
-        <>
+        <Fragment>
 
             <h1>Universal Quiz Game</h1>
 
@@ -121,7 +121,7 @@ const App = () => {
 
             {/* if gameStarted state is false or all questions have been answered show game status*/}
             {!gameStarted || questionNumber === parseInt(gameSelect.questionsAmount) ? (
-                <>
+                <Fragment>
                     <SelectGame
                         gameSelect={gameSelect}
                         handleStartGame={startGame}
@@ -137,7 +137,7 @@ const App = () => {
                         <ResultsTable questions={questions}/>
 
                     )}
-                </>
+                </Fragment>
                 // if loading is false and score is reset display quiz section
             ) : !loading && score.length !== parseInt(gameSelect.questionsAmount) ? (
 
@@ -149,11 +149,10 @@ const App = () => {
                     isBtnDisabled={nextBtnDisabled}
                     score={score}
                 />
-            ) : null
-            }
+            ) : null}
 
-        </>
+        </Fragment>
     );
-}
+};
 
 export default App;

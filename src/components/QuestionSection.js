@@ -39,7 +39,7 @@ const QuestionSection = props => {
             </button>
 
         </article>
-    )
-}
+    );
+};
 
 export default QuestionSection;
