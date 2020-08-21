@@ -8,6 +8,7 @@ import QuestionSection from './QuestionSection';
 import SelectGame from './SelectGame';
 import ResultsTable from './ResultsTable';
 
+
 const App = () => {
     const [gameSelect, setGameSelect] = useState({
         category: "",
@@ -123,7 +124,6 @@ const App = () => {
             {!gameStarted || questionNumber === parseInt(gameSelect.questionsAmount) ? (
                 <Fragment>
                     <SelectGame
-                        gameSelect={gameSelect}
                         handleStartGame={startGame}
                         handleStatus={handleStatus}
                         handleShowResults={revealResults}

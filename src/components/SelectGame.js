@@ -1,58 +1,62 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 
 // utils related
 import {CHALLENGE_CATEGORY, DIFFICULTY} from '../utils/selectOptions';
 
 const SelectGame = props => {
 
-    const {handleStatus, handleStartGame, gameSelect, handleShowResults, questionsNumber, isResultDisplayed} = props;
+    const {handleStatus, handleStartGame, handleShowResults, questionsNumber, isResultDisplayed} = props;
 
     return (
-        <article id='game-select'>
+        <Fragment>
+            <form id='game-select' onSubmit={handleStartGame}>
 
-            <input id='questionsAmount-input' type='number' max={50} placeholder='Number of questions (max=50)'
-                   onChange={handleStatus}/>
+                <input
+                    id='questionsAmount-input'
+                    type='text'
+                    pattern='^(?:[1-9]\d?)$'
+                    placeholder='Number of questions (max=50)'
+                    required
+                    onChange={handleStatus}
+                />
 
-            <select id='category-select' onChange={handleStatus}>
-                {CHALLENGE_CATEGORY.map((category, index) => (
-                    <option
-                        label={category.label}
-                        value={category.value}
-                        key={`${category.label}-${index}`}
-                    />
-                ))}
-            </select>
+                <select id='category-select' onChange={handleStatus}>
+                    {CHALLENGE_CATEGORY.map((category, index) => (
+                        <option
+                            label={category.label}
+                            value={category.value}
+                            key={`${category.label}-${index}`}
+                        />
+                    ))}
+                </select>
 
-            <select id='difficulty-select' onChange={handleStatus}>
-                {DIFFICULTY.map((difficulty, index) => (
-                    <option
-                        label={difficulty.label}
-                        value={difficulty.value}
-                        key={`${difficulty.label}-${index}`}
-                    />
-                ))}
-            </select>
+                <select id='difficulty-select' onChange={handleStatus}>
+                    {DIFFICULTY.map((difficulty, index) => (
+                        <option
+                            label={difficulty.label}
+                            value={difficulty.value}
+                            key={`${difficulty.label}-${index}`}
+                        />
+                    ))}
+                </select>
 
-            <section id='btns-section'>
-                <button
-                    className='btn first-btn'
-                    onClick={handleStartGame}
-                    disabled={Number(gameSelect.questionsAmount) < 1}
-                >
+                <button className='btn first-btn'>
                     Start Game
                 </button>
+            </form>
 
-                {/* if there are no questions (the game didn't run at least once), do not render button*/}
-                {questionsNumber > 0 && (
+            {/* if there are no questions (the game didn't run at least once), do not render button*/}
+            {questionsNumber > 0 && (
+                <section className='results'>
                     <button
                         className='btn'
                         onClick={handleShowResults}
                     >
                         {isResultDisplayed ? 'Hide Results' : 'Show Results'}
                     </button>
-                )}
-            </section>
-        </article>
+                </section>
+            )}
+        </Fragment>
     );
 };
 
