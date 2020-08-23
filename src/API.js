@@ -8,9 +8,15 @@ export const fetchQuestions = async (questionsAmount, category, difficulty) => {
 
     const data = await (await fetch(url)).json();
 
-    return data.results.map((question) => ({
+    const status = data.response_code;
+    const questions = data.results.map((question) => ({
             ...question,
             allAnswers: shuffleArray([...question.incorrect_answers, question.correct_answer])
         }
     ));
+
+    return {
+        status,
+        ...questions
+    };
 };
