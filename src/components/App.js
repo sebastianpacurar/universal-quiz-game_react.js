@@ -17,7 +17,7 @@ const App = () => {
         questionsAmount: "",
     });
     const [loading, setLoading] = useState(false);
-    const [questions, setQuestions] = useState([]);
+    const [questions, setQuestions] = useState({});
     const [questionNumber, setQuestionNumber] = useState(0);
     const [gameStarted, setGameStarted] = useState(false);
     const [score, setScore] = useState(0);
