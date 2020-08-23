@@ -5,7 +5,10 @@ import {CHALLENGE_CATEGORY, DIFFICULTY} from '../utils/selectOptions';
 
 const SelectGame = props => {
 
-    const {handleStatus, handleStartGame, handleShowResults, questionsNumber, isResultDisplayed} = props;
+    const {handleStatus, handleStartGame, handleShowResults, questions, isResultDisplayed} = props;
+
+    // get rid of the status property
+    delete questions.status;
 
     return (
         <Fragment>
@@ -46,7 +49,7 @@ const SelectGame = props => {
             </form>
 
             {/* if there are no questions (the game didn't run at least once), do not render button*/}
-            {questionsNumber > 0 && (
+            {Object.keys(questions).length > 0 && (
                 <section className='results'>
                     <button
                         className='btn'
