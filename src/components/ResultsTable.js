@@ -1,5 +1,8 @@
 import React from 'react';
 
+// import DOMPurify to sanitize the dangerouslySetInnerHTML
+import DOMPurify from 'dompurify';
+
 
 const ResultsTable = props => {
     const {questions} = props;
@@ -15,8 +18,8 @@ const ResultsTable = props => {
             <tbody>
             {questions.map((question, index) => (
                 <tr key={`${question}-${index}`}>
-                    <td dangerouslySetInnerHTML={{__html: question.question}}/>
-                    <td dangerouslySetInnerHTML={{__html: question.correct_answer}}/>
+                    <td dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(question.question)}}/>
+                    <td dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(question.correct_answer)}}/>
                 </tr>
             ))}
             </tbody>

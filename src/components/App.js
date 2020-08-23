@@ -7,6 +7,7 @@ import {fetchQuestions} from '../API';
 import QuestionSection from './QuestionSection';
 import SelectGame from './SelectGame';
 import ResultsTable from './ResultsTable';
+import ErrorSection from './ErrorSection';
 
 
 const App = () => {
@@ -50,6 +51,13 @@ const App = () => {
     const nextQuestion = () => {
         setQuestionNumber(questionNumber + 1);
         setNextBtnDisabled(!nextBtnDisabled);
+    }
+
+    // in case the API does not return any questions, reset the states
+    const selectAgain = () => {
+        setGameStarted(false);
+        setGameSelect({category: '', questionsAmount: '', difficulty: ''});
+        setQuestions([]);
     }
 
     // when questionsNumber reaches the questionAmount the user selected, end the game
@@ -120,8 +128,8 @@ const App = () => {
                 </article>
             )}
 
-            {/* if gameStarted state is false or all questions have been answered show game status*/}
-            {!gameStarted || questionNumber === parseInt(gameSelect.questionsAmount) ? (
+            {/* if gameStarted state is false or all questions have been answered, render SelectGame*/}
+            {(!gameStarted || questionNumber === parseInt(gameSelect.questionsAmount)) ? (
                 <Fragment>
                     <SelectGame
                         handleStartGame={startGame}
@@ -138,8 +146,9 @@ const App = () => {
 
                     )}
                 </Fragment>
-                // if loading is false and score is reset display quiz section
-            ) : !loading && score.length !== parseInt(gameSelect.questionsAmount) ? (
+
+                // if loading is false and score is reset and no questions returned by API, render QuizSection
+            ) : !loading && score.length !== parseInt(gameSelect.questionsAmount) && questions.status === 0 ? (
 
                 <QuestionSection
                     questions={questions}
@@ -149,7 +158,15 @@ const App = () => {
                     isBtnDisabled={nextBtnDisabled}
                     score={score}
                 />
-            ) : null}
+
+                // if loading is false and there are no questions from the API, render ErrorSection
+            ) : !loading && questions.status === 1 ?
+
+                <ErrorSection
+                    handleErrorGame={selectAgain}
+                />
+
+                : null}
 
         </Fragment>
     );
