@@ -1,5 +1,8 @@
 import React from 'react';
 
+// import DOMPurify to sanitize the dangerouslySetInnerHTML
+import DOMPurify from 'dompurify';
+
 
 const QuestionSection = props => {
 
@@ -12,12 +15,11 @@ const QuestionSection = props => {
             <h3>Question {questionNo + 1} out of {questions.length}</h3>
             <h3>Score: {score}</h3>
 
-            {/* using dangerouslySetInnerHTML to be able to parse the symbols. it's like using innerHTML in vanilla JS
-                  NEVER USE THIS TYPE OF ATTRIBUTE IN REACT, because it is an opening to an XSS (cross-site scripting) attack,
-                  but to be able to have a workaround on SoloLearn, i chose this way.
+            {/* using dangerouslySetInnerHTML to be able to parse the symbols.
+                  to prevent the issue with XSS in a real life project, I used DOMPurify.sanitize()
             */}
             <h3 id='question-category'>{currentQuestion.category}</h3>
-            <section id='question' dangerouslySetInnerHTML={{__html: currentQuestion.question}}/>
+            <section id='question' dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(currentQuestion.question)}}/>
 
             <article id='answers-container'>
                 {currentQuestion.allAnswers.map((answer, index) => (
@@ -26,7 +28,7 @@ const QuestionSection = props => {
                         key={`${answer}-${index}`}
                         onClick={handleCheckAnswer}
                         data-unparsed={answer}
-                        dangerouslySetInnerHTML={{__html: answer}}/>
+                        dangerouslySetInnerHTML={{__html: DOMPurify.sanitize(answer)}}/>
                 ))}
             </article>
 

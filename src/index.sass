@@ -199,6 +199,19 @@ h1
     font-size: 20px
 
 
+// error section (in case the API does not return any questions)
+#error-section
+  @extend %organisedGrid
+  grid-row-gap: 25px
+  margin-top: 20px
+  width: 100%
+
+  #error
+    @extend %QuestionAndAnswers
+    font-size: 20px
+    font-weight: bold
+
+
 // quiz results section
 table
   width: 98%
