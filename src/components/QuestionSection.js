@@ -12,7 +12,7 @@ const QuestionSection = props => {
     return (
         <article id='quiz-section'>
 
-            <h3>Question {questionNo + 1} out of {questions.length}</h3>
+            <h3>Question {questionNo + 1} out of {Object.keys(questions).length -1 }</h3>
             <h3>Score: {score}</h3>
 
             {/* using dangerouslySetInnerHTML to be able to parse the symbols.
