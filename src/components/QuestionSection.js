@@ -12,7 +12,7 @@ const QuestionSection = props => {
     return (
         <article id='quiz-section'>
 
-            <h3>Question {questionNo + 1} out of {Object.keys(questions).length -1 }</h3>
+            <h3>Question {questionNo + 1} out of {Object.keys(questions).length -1}</h3>
             <h3>Score: {score}</h3>
 
             {/* using dangerouslySetInnerHTML to be able to parse the symbols.
@@ -37,7 +37,7 @@ const QuestionSection = props => {
                 onClick={handleNextQuestion}
                 disabled={isBtnDisabled}
             >
-                {questionNo + 1 === questions.length ? 'Check Result' : 'Next Question'}
+                {questionNo + 1 === Object.keys(questions).length -1 ? 'Check Result' : 'Next Question'}
             </button>
 
         </article>

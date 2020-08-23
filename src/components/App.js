@@ -135,7 +135,7 @@ const App = () => {
                         handleStartGame={startGame}
                         handleStatus={handleStatus}
                         handleShowResults={revealResults}
-                        questionsNumber={questions.length}
+                        questions={questions}
                         isResultDisplayed={showResults}
                     />
 
