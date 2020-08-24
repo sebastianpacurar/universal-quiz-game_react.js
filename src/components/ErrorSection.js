@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const ErrorSection = (props) => {
@@ -21,5 +22,11 @@ const ErrorSection = (props) => {
         </article>
     );
 };
+
+
+// prop types
+ErrorSection.propTypes = {
+    handleErrorGame: PropTypes.func.isRequired
+}
 
 export default ErrorSection;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // import DOMPurify to sanitize the dangerouslySetInnerHTML
 import DOMPurify from 'dompurify';
@@ -29,5 +30,12 @@ const ResultsTable = props => {
         </table>
     );
 };
+
+
+// prop types
+ResultsTable.propTypes = {
+    questions: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+}
+
 
 export default ResultsTable;
