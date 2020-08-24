@@ -1,7 +1,9 @@
-import React, {Fragment} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // utils related
 import {CHALLENGE_CATEGORY, DIFFICULTY} from '../utils/selectOptions';
+
 
 const SelectGame = props => {
 
@@ -11,7 +13,7 @@ const SelectGame = props => {
     delete questions.status;
 
     return (
-        <Fragment>
+        <>
             <form id='game-select' onSubmit={handleStartGame}>
 
                 <input
@@ -59,8 +61,19 @@ const SelectGame = props => {
                     </button>
                 </section>
             )}
-        </Fragment>
+        </>
     );
 };
+
+
+// type checking
+SelectGame.propTypes = {
+    questions: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
+    handleStatus: PropTypes.func.isRequired,
+    handleStartGame: PropTypes.func.isRequired,
+    handleShowResults: PropTypes.func.isRequired,
+    isResultDisplayed: PropTypes.bool.isRequired
+}
+
 
 export default SelectGame;

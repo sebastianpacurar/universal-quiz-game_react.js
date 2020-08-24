@@ -1,5 +1,6 @@
 import {shuffleArray} from './utils/helperFunctions';
 
+
 export const fetchQuestions = async (questionsAmount, category, difficulty) => {
 
     let url = `https://opentdb.com/api.php?amount=${questionsAmount}`;
