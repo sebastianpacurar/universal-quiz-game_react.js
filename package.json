@@ -1,31 +1,44 @@
 {
-  "name": "universal-quiz-game_react.js",
-  "version": "0.1.0",
-  "private": false,
+  "name": "universal-quiz-game_react",
+  "version": "1.0.0",
+  "description": "quiz game with questions from more than 20 categories, on different levels of difficulty",
+  "main": "webpack.config.js",
+  "scripts": {
+    "dev": "webpack-dev-server --watch --mode=development",
+    "build": "webpack --mode=production",
+    "sass": "sass ./src:./stylesheet",
+    "sass:watch": "sass --watch ./src:/stylesheet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebastianpacurar/universal-quiz-game_react.js.git"
+  },
+  "author": "Sebastian Pacurar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sebastianpacurar/universal-quiz-game_react.js/issues"
+  },
+  "homepage": "https://github.com/sebastianpacurar/universal-quiz-game_react.js#readme",
   "dependencies": {
-    "dompurify": "^2.0.12",
+    "babel-polyfill": "^6.26.0",
+    "dompurify": "^2.0.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.4",
+    "@babel/plugin-transform-runtime": "^7.11.0",
+    "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^4.2.1",
+    "html-loader": "^1.2.1",
+    "html-webpack-plugin": "^4.3.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "sass": "^1.26.10"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "sass": "sass --watch ./src:./public/stylesheet"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "sass": "^1.26.10",
+    "sass-loader": "^9.0.3",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }

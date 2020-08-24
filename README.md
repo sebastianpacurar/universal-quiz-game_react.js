@@ -8,9 +8,9 @@
 
 
 ## Improvements in progress:
- * Webpack with Babel for bundling and cross-browser friendly JavaScript 
- * Backend with a mongo db in which I want to store results based on player usernames
+ * ~~Webpack with Babel for bundling and cross-browser friendly JavaScript~~ (done)
  * Improvements with SASS, mainly for responsive design and cross-browser friendly styling
+ * Backend with a mongo db in which I want to store results based on player usernames
  * (Maybe) Separate branch with MaterialUI implementation
  
  
@@ -19,29 +19,45 @@
 
     * Windows users:
         * please download from [here](https://nodejs.org/en/download/), and perform the installation.
-           
     * Linux users:
         * please follow these [instructions](https://nodejs.org/en/download/package-manager/).
-        
     * MacOS users:
         * please download from [here](https://nodejs.org/en/download/), and perform the installation.
         
     <br />
 
 2) **Install node modules for front-end**:    
-    * Change directory to **<path_to_repo>/universal-quiz-game_react.js** and run ```npm install``` in the terminal. This command will install all the packages featured in package.json file under dependencies and devDependencies properties.
+    * Change directory to ***<path_to_repo>/universal-quiz-game_react.js*** and run ```npm install``` in the terminal. This command will install all the packages featured in package.json file under dependencies and devDependencies properties.
 
 <br />
 
 # How to run
-* Open one terminal, change directory to **<location_of_repo>/universal-quiz-game_react.js**, and run the following command:
+* Open one terminal, change directory to ***<path_to_repo>/universal-quiz-game_react.js***, and run the following command:
     ```
-        npm start
+        npm run dev
     ```
-    * It will open a new browser window with the ```http://localhost:3000/``` URL. if this does not happen, please access it by yourself.
+    * This will trigger **webpack-dev-server** to start in watch mode, and a new browser window with the ```http://localhost:3000/``` URL will be opened. if this does not happen, please access it by yourself.
 
 <br />
 
+# Other commands
+*   ```
+        npm run build
+    ```
+    * This will generate a ***dist*** (distributable) folder in the root directory where the minified html, and bundled index.js file can be found.
+
+<br />
+
+*   ```
+        npm run sass
+    ```
+    * This will compile the .sass files under source (***src***) directory into .css files, which can be found in the generated ***stylesheet*** folder under the root directory.
     
+<br />    
+    
+*   ```
+        npm run sass:watch
+    ```    
+    * This command will have the same output as the ```npm run sass``` command, except that it will be triggered everytime the .sass file is modified, meaning that it will generate the new .css file right after the modified .sass file is read by the compiler.
 # Creator
 * [Sebastian Pacurar](https://github.com/sebastianpacurar)
