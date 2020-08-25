@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import '../sass/framework/ErrorSection.sass';
 
 const ErrorSection = (props) => {
 

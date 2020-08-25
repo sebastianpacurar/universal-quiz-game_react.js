@@ -1,0 +1,15 @@
+@use '../base/variables' as var
+@use '../base/mixins'
+
+// error section (in case the API does not return any questions)
+#error-section
+  @include mixins.organisedGrid
+  grid-row-gap: 25px
+  margin-top: 20px
+  width: 100%
+
+  #error
+    @include mixins.QuestionAndAnswers
+    border: 1px solid var.$mainColor
+    font-size: 20px
+    font-weight: bold

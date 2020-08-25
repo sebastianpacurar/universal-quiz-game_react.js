@@ -3,6 +3,8 @@ import React, {useState, useEffect} from 'react';
 // fetch method
 import {fetchQuestions} from '../API';
 
+import '../sass/framework/index.sass'
+
 // components related
 import QuestionSection from './QuestionSection';
 import SelectGame from './SelectGame';

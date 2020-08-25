@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "webpack-dev-server --watch --mode=development",
     "build": "webpack --mode=production",
-    "sass": "sass ./src:./stylesheet",
-    "sass:watch": "sass --watch ./src:/stylesheet"
+    "sass": "sass ./src/sass:./stylesheet",
+    "sass:watch": "sass --watch ./src/sass:/stylesheet"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "eslint-plugin-standard": "^4.0.1",
     "html-loader": "^1.2.1",
     "html-webpack-plugin": "^4.3.0",
+    "mini-css-extract-plugin": "^0.10.0",
     "sass": "^1.26.10",
     "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",

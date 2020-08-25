@@ -1,0 +1,104 @@
+// load the variables and mixins partials
+@use '../base/variables' as var
+@use '../base/mixins'
+
+// google fonts (mainly for title)
+@import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap')
+
+$extraSmallAndSmall: var.$extraSmallAndSmall
+
+// selector for the default styling for buttons
+%btnStyle
+  font: var.$gameStatusFonts
+  font-weight: bold
+  color: var.$mainColor
+  background-color: yellowgreen
+  border: none
+  border-radius: .5em
+  text-align: center
+  text-decoration: none
+  cursor: pointer
+  width: 275px
+  height: 45px
+  outline: none
+  user-select: none
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+
+
+body
+  background: url('https://i.ibb.co/cD1c7BV/relaxing.jpg') no-repeat center fixed
+  background-size: cover
+
+
+h1
+  font-size: 2.2em
+  text-align: center
+  font-family: 'Parisienne', cursive, sans-serif
+
+
+
+//start game and next question buttons
+.btn
+  @extend %btnStyle
+
+  &:hover
+    background-color: var.$buttonHover
+
+  &:active
+    background-color: var.$buttonActive
+
+  &:disabled
+    background-color: var.$buttonDisabled
+    color: black
+
+    &:active
+      background-color: var.$buttonDisabled
+
+.first-btn
+  margin-top: 25px
+
+//  loading related
+.spinner
+  $spinnerSize: var.$spinnerSize
+  position: absolute
+  top: calc(50% - #{$spinnerSize} / 2)
+  left: calc(50% - #{$spinnerSize} / 2)
+  width: $spinnerSize
+  height: $spinnerSize
+  animation: spinner 0.75s linear infinite
+
+  span
+    position: absolute
+    width: 100%
+    height: 100%
+    border-radius: 50%
+
+
+  .spinner-inner-1
+    background: linear-gradient(to right, rgba(var.$mainColor, 0) 0%, rgba(var.$mainColor, 0) 50%, var.$mainColor 51%)
+
+
+  .spinner-inner-2
+    background: linear-gradient(to top, rgba(var.$backgroundColor, 0) 0%, var.$backgroundColor 100%)
+
+
+  .spinner-inner-3
+    $offset: var.$spinnerSize * 0.1
+    top: $offset
+    left: $offset
+    width: var.$spinnerSize - ($offset * 2)
+    height: var.$spinnerSize - ($offset * 2)
+    background: var.$backgroundColor
+
+
+@keyframes spinner
+  0%
+    transform: rotate(0deg)
+  100%
+    transform: rotate(360deg)
+
+
+// applicable for xs and sm screens
+@media #{$extraSmallAndSmall}
+  #quiz-section
+    grid-row-gap: 0

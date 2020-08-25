@@ -1,0 +1,72 @@
+@use '../base/variables' as var
+@use '../base/mixins'
+
+
+// game selection area (game status)
+#game-select
+  display: grid
+  grid-template-columns: 1fr
+  justify-items: center
+  grid-row-gap: 10px
+
+  // input related
+  input[type='text']
+    @include mixins.dataHandler
+    text-indent: 20px
+    padding: 0
+    width: 273px
+    height: 43px
+    line-height: 0
+
+  // select related
+  select
+    @include mixins.dataHandler
+    text-indent: 5px
+    padding: .6em 1.4em .5em .8em
+    width: 275px
+    height: 45px
+    line-height: 1.3
+
+    option
+      color: var.$mainColor
+      outline: none
+
+
+// quiz results section
+table
+  width: 98%
+  margin: 20px 1% 1% 1%
+  font-family: arial, sans-serif
+  border-collapse: collapse
+
+  th
+    position: sticky
+    top: -1px
+    background-color: yellow
+    border: 1px solid var.$mainColor
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4)
+    text-align: center
+    padding: 8px
+
+  td
+    border: 1px solid var.$mainColor
+    text-align: center
+    padding: 8px
+    user-select: text
+
+  tr
+    &:nth-child(even)
+      background-color: #e8e8e8
+
+    &:nth-child(odd)
+      background-color: #fff
+
+    &:hover
+      background-color: lightblue
+
+
+//  results button
+.results
+  display: flex
+  justify-content: center
+  margin-top: 10px

@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// import the styling
+import '../sass/framework/SelectGame.sass';
+
 // utils related
 import {CHALLENGE_CATEGORY, DIFFICULTY} from '../utils/selectOptions';
 
