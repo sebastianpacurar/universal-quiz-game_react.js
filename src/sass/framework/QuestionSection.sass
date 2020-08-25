@@ -1,0 +1,26 @@
+@use '../base/mixins'
+
+#quiz-section
+  @include mixins.organisedGrid
+  grid-row-gap: 10px
+
+
+  #question-category
+    text-align: center
+
+  #question
+    @include mixins.QuestionAndAnswers
+    font-size: 20px
+    font-weight: bold
+
+  #answers-container
+    @include mixins.organisedGrid
+    grid-row-gap: 25px
+    margin-top: 20px
+    width: 100%
+
+  .possible-answers
+    @include mixins.QuestionAndAnswers
+    border: none
+    cursor: pointer
+    font-size: 20px

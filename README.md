@@ -36,7 +36,7 @@
     ```
         npm run dev
     ```
-    * This will trigger **webpack-dev-server** to start in watch mode, and a new browser window with the ```http://localhost:3000/``` URL will be opened. if this does not happen, please access it by yourself.
+    * This will trigger **webpack-dev-server** to start in watch mode. OPen a browser and go to ```http://localhost:3000/``` URL.
 
 <br />
 
@@ -51,13 +51,16 @@
 *   ```
         npm run sass
     ```
-    * This will compile the .sass files under source (***src***) directory into .css files, which can be found in the generated ***stylesheet*** folder under the root directory.
+    * This will compile the .sass files under ***src/sass*** directory into .css files, which can be found in the generated ***stylesheet*** folder under the root directory. The project related stylings can be found in ***stylesheet/framework*** folder.
     
 <br />    
     
 *   ```
         npm run sass:watch
     ```    
-    * This command will have the same output as the ```npm run sass``` command, except that it will be triggered everytime the .sass file is modified, meaning that it will generate the new .css file right after the modified .sass file is read by the compiler.
+    * This command will have the same output as the ```npm run sass``` command, except that it will be triggered everytime the .sass files are modified, meaning that it will generate the new .css file right after the modified .sass file is read by the compiler.
+    
+<br /> 
+   
 # Creator
 * [Sebastian Pacurar](https://github.com/sebastianpacurar)
