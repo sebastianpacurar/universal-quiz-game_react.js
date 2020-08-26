@@ -27,6 +27,7 @@ $mdPlus: 'screen and (min-width: 960px)'
     border: none
     cursor: pointer
     font-size: 20px
+    animation: enlargeFrame 1s ease-in-out 0s 1 normal forwards
 
 
 @media #{$mdPlus}
@@ -37,3 +38,10 @@ $mdPlus: 'screen and (min-width: 960px)'
     #answers-container
       grid-template-columns: repeat(2, 1fr)
       width: 95%
+
+
+@keyframes enlargeFrame
+  0%
+    transform: scale(0)
+  100%
+    transform: scale(1)
