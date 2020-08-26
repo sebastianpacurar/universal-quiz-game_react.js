@@ -5,7 +5,8 @@
 // google fonts (mainly for title)
 @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap')
 
-$extraSmallAndSmall: var.$extraSmallAndSmall
+// media query related
+$extraSmall: 'screen and (min-width: 0px) and (max-width: 599px)'
 
 // selector for the default styling for buttons
 %btnStyle
@@ -26,7 +27,7 @@ $extraSmallAndSmall: var.$extraSmallAndSmall
 
 
 body
-  background: url('https://i.ibb.co/cD1c7BV/relaxing.jpg') no-repeat center fixed
+  background: url('../../assets/images/the_sea.jpg') no-repeat center fixed
   background-size: cover
 
 
@@ -99,6 +100,6 @@ h1
 
 
 // applicable for xs and sm screens
-@media #{$extraSmallAndSmall}
+@media #{$extraSmall}
   #quiz-section
     grid-row-gap: 0

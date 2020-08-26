@@ -1,5 +1,8 @@
 @use '../base/mixins'
 
+
+$mdPlus: 'screen and (min-width: 960px)'
+
 #quiz-section
   @include mixins.organisedGrid
   grid-row-gap: 10px
@@ -24,3 +27,13 @@
     border: none
     cursor: pointer
     font-size: 20px
+
+
+@media #{$mdPlus}
+  #quiz-section
+    @include mixins.organisedGrid
+    grid-row-gap: 10px
+
+    #answers-container
+      grid-template-columns: repeat(2, 1fr)
+      width: 95%

@@ -40,6 +40,15 @@ module.exports = {
             },
 
             {
+                test: /\.jpg$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                    }
+                ]
+            },
+
+            {
                 test: /\.s[ca]ss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader']
             },
