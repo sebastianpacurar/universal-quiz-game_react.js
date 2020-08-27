@@ -15,15 +15,27 @@
  
  
 # Setup:
-1) **In order to make the project run, you need to have node.js installed:**
+1) **In order to make the project run, you need to have Node.JS and SASS installed:**
 
-    * Windows users:
-        * please download from [here](https://nodejs.org/en/download/), and perform the installation.
-    * Linux users:
-        * please follow these [instructions](https://nodejs.org/en/download/package-manager/).
-    * MacOS users:
-        * please download from [here](https://nodejs.org/en/download/), and perform the installation.
-        
+    1) Node.JS
+        * Windows users:
+            * please download from [here](https://nodejs.org/en/download/), and perform the installation.
+        * Linux users:
+            * please follow these [instructions](https://nodejs.org/en/download/package-manager/).
+        * MacOS users:
+            * please download from [here](https://nodejs.org/en/download/), and perform the installation.
+            
+    <br />
+    
+    2) SASS (since the project doesn't contain a lot of SASS files to compile, the instructions are for Ruby SASS, instead of Dart SASS)
+        * Windows users:
+            * please download a package from [here](https://rubyinstaller.org/), and perform the installation.
+            * follow these [instructions](https://www.codementor.io/@ricardozea/sass-for-beginners-the-friendliest-guide-about-installing-and-using-sass-on-windows-cjfs2id3o)
+        * Linux users:
+            * please follow these [instructions](https://medium.com/@AhmadSharif/install-sass-at-ubuntu-14-04-lts-c3e85df26545).
+        * MacOS users:
+            * please follow these [instructions](https://dyclassroom.com/howto-mac/how-to-install-sass-on-mac).
+                
     <br />
 
 2) **Install node modules for front-end**:    

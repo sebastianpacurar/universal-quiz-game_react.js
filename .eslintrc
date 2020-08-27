@@ -12,7 +12,8 @@
     }
   },
   "plugins": [
-    "react"
+    "react",
+    "react-hooks"
   ],
   "rules": {
     "react/jsx-no-bind": [
@@ -37,6 +38,8 @@
     ],
     "react/jsx-indent": "off",
     "react/jsx-indent-props": "off",
-    "react/jsx-tag-spacing": "off"
+    "react/jsx-tag-spacing": "off",
+    // react-hooks related
+    "react-hooks/exhaustive-deps": "warn"
   }
 }
