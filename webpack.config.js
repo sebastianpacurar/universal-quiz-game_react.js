@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
     entry: path.resolve(__dirname, 'src/index.js'),
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'build/dist'),
         filename: 'bundle.js'
     },
     module: {
@@ -50,7 +50,32 @@ module.exports = {
 
             {
                 test: /\.s[ca]ss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader']
+                use: [
+                    {
+                        loader: 'style-loader',
+                    },
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            importLoaders: 1
+                        }
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            sourceMap: true,
+                            config: {
+                                path: path.resolve(__dirname, 'postcss.config.js')
+                            }
+                        }
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true
+                        }
+                    },
+                ],
             },
 
         ]
@@ -71,7 +96,7 @@ module.exports = {
     devServer: {
         host: '0.0.0.0',
         port: 3000,
-        contentBase: path.resolve(__dirname, 'dist'),
+        contentBase: path.resolve(__dirname, 'build/dist'),
         compress: true,
     }
 };
