@@ -48,7 +48,7 @@
     ```
         npm run dev
     ```
-    * This will trigger **webpack-dev-server** to start in watch mode. OPen a browser and go to ```http://localhost:3000/``` URL.
+    * This will trigger **webpack-dev-server** to start in watch mode. Open a browser and go to ```http://localhost:3000/``` URL.
 
 <br />
 
@@ -56,14 +56,14 @@
 *   ```
         npm run build
     ```
-    * This will generate a ***dist*** (distributable) folder in the root directory where the minified html, and bundled index.js file can be found.
+    * This will generate a ***dist*** (distributable) folder in the ***build*** directory where the minified html, and bundled index.js file can be found.
 
 <br />
 
 *   ```
         npm run sass
     ```
-    * This will compile the .sass files under ***src/sass*** directory into .css files, which can be found in the generated ***stylesheet*** folder under the root directory. The project related stylings can be found in ***stylesheet/framework*** folder.
+    * This will compile the .sass files under ***src/sass*** directory into .css files, which can be found in the generated ***stylesheet*** folder under the ***build*** directory. The project related styling can be found in ***stylesheet/framework*** folder.
     
 <br />    
     
@@ -71,6 +71,13 @@
         npm run sass:watch
     ```    
     * This command will have the same output as the ```npm run sass``` command, except that it will be triggered everytime the .sass files are modified, meaning that it will generate the new .css file right after the modified .sass file is read by the compiler.
+    
+<br /> 
+
+*   ```
+        npm run css-autoprefix
+    ```    
+    * This command will create a ***post-css-build*** folder in the ***build*** directory. This folder will contain all the sass files with vendor-prefixes for cross-browser compatibility.
     
 <br /> 
    
